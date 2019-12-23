@@ -1,0 +1,14 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion "Amazon.com:Amazon Fire Phone SDK Addon:17"
+    buildToolsVersion "21.1.2"
+
+    sourceSets {
+        main {
+            manifest.srcFile "AndroidManifest.xml"
+            java.srcDirs "src"
+            res.srcDirs "res"
+        }
+    }
+}
