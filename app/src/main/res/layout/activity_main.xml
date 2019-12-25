@@ -1,12 +1,39 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.dunno.aenen.forgottobuy.MainActivity">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+<com.amazon.euclid.widget.ZParallaxBackground xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:amazon="http://schemas.android.com/apk/res/amazon"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    euclid:depth="@euclid:dimen/globalLayerIn3" >
 
-</RelativeLayout>
+    <com.amazon.euclid.widget.ZShadowReceiver
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.amazon.euclid.widget.ZContainer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            euclid:autoPadding="true">
+
+            <com.amazon.euclid.widget.ZLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                euclid:layout_depth="wrap_content"
+                android:orientation="vertical"
+                android:gravity="top">
+
+                <com.amazon.euclid.widget.ZCheckBox
+                    android:id="@+id/zCheckBox1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    euclid:layout_depth="wrap_content"
+                    android:text="@string/zcheckbox_1"
+                    android:textSize="24sp"
+                    euclid:textLocation="right" />
+            </com.amazon.euclid.widget.ZLinearLayout>
+        </com.amazon.euclid.widget.ZContainer>
+    </com.amazon.euclid.widget.ZShadowReceiver>
+</com.amazon.euclid.widget.ZParallaxBackground>
