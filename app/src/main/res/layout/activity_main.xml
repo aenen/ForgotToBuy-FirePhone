@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.amazon.euclid.widget.ZParallaxBackground xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:amazon="http://schemas.android.com/apk/res/amazon"
+<com.amazon.euclid.widget.ZParallaxBackground
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    android:orientation="vertical"
+    android:id="@+id/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    euclid:depth="@euclid:dimen/globalLayerIn3" >
+    android:layout_height="match_parent">
+
+    <com.amazon.euclid.widget.ZShadowReceiver
+        android:id="@+id/header_shadow_receiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        euclid:shadowDepth="@euclid:dimen/globalLayerScreen" >
+
+        <com.amazon.euclid.widget.ZContainer
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.amazon.euclid.widget.ZHeaderNavigationBar
+                xmlns:amazon="http://schemas.android.com/apk/res/amazon"
+                android:id="@+id/zheadernavigationbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                euclid:layout_depth="wrap_content"
+                amazon:headerSubtitle="Яблука"
+                amazon:headerTitle="@string/title_activity_main"
+                amazon:upNavigationEnabled="false"
+                euclid:widgetTheme="@euclid:style/Theme.Euclid.Dark" />
+        </com.amazon.euclid.widget.ZContainer>
+    </com.amazon.euclid.widget.ZShadowReceiver>
 
     <com.amazon.euclid.widget.ZShadowReceiver
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,6 +37,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.amazon.euclid.widget.ZContainer
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,16 +48,18 @@
                 android:layout_height="match_parent"
                 euclid:layout_depth="wrap_content"
                 android:orientation="vertical"
-                android:gravity="top">
+                android:gravity="center">
 
-                <com.amazon.euclid.widget.ZCheckBox
-                    android:id="@+id/zCheckBox1"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                <com.amazon.euclid.widget.ZProgressBar
+                    android:id="@+id/zprogressbarindeterminatecircular"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
                     euclid:layout_depth="wrap_content"
-                    android:text="@string/zcheckbox_1"
-                    android:textSize="24sp"
-                    euclid:textLocation="right" />
+                    android:enabled="true"
+                    android:indeterminateOnly="true"
+                    android:progress="50"
+                    android:secondaryProgress="50" />
             </com.amazon.euclid.widget.ZLinearLayout>
         </com.amazon.euclid.widget.ZContainer>
     </com.amazon.euclid.widget.ZShadowReceiver>
