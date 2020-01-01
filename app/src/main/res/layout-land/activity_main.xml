@@ -80,7 +80,7 @@
                         android:text="@string/count_initial_value"
                         euclid:textDepth="10dp"
                         android:gravity="center"
-                        android:textSize="160sp"
+                        android:textSize="120sp"
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:background="#ffff00"
