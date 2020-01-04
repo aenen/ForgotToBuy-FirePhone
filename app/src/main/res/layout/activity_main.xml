@@ -7,19 +7,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:amazon="http://schemas.android.com/apk/res/amazon"
-        xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    <com.amazon.euclid.widget.ZShadowReceiver
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
 
-        <com.amazon.euclid.widget.ZShadowReceiver
-            android:id="@+id/header_shadow_receiver"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:amazon="http://schemas.android.com/apk/res/amazon"
+            xmlns:euclid="http://schemas.android.com/apk/res/euclid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <com.amazon.euclid.widget.ZContainer
+                android:id="@+id/header_shadow_receiver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -27,122 +28,84 @@
                     android:id="@+id/zheadernavigationbar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    amazon:headerSubtitle="Яблука"
                     amazon:headerTitle="@string/title_activity_main"
                     amazon:upNavigationEnabled="false"
                     euclid:layout_depth="wrap_content"
                     euclid:widgetTheme="@euclid:style/Theme.Euclid.Dark" />
             </com.amazon.euclid.widget.ZContainer>
-        </com.amazon.euclid.widget.ZShadowReceiver>
-
-        <com.amazon.euclid.widget.ZShadowReceiver
-            android:id="@+id/content_shadow_receiver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/header_shadow_receiver"
-            euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
 
             <com.amazon.euclid.widget.ZContainer
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                euclid:baseDepth="-1dp">
+                android:layout_height="match_parent"
+                euclid:layout_depth="wrap_content">
 
-                <com.amazon.euclid.widget.ZRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:amazon="http://schemas.android.com/apk/res/amazon"
-                    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
-                    android:id="@+id/content_container"
+                <com.amazon.euclid.widget.ZLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:orientation="vertical"
                     euclid:layout_depth="wrap_content">
 
                     <com.amazon.euclid.widget.ZTextView
-                        android:id="@+id/article_heading"
+                        android:id="@+id/text_header_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/text_header_reply"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                        android:textStyle="bold"
+                        android:visibility="invisible"
+                        euclid:layout_depth="wrap_content"/>
+
+                    <com.amazon.euclid.widget.ZTextView
+                        android:id="@+id/text_message_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:visibility="invisible"
+                        euclid:layout_depth="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+                    <com.amazon.euclid.widget.ZLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/blue"
-                        android:padding="@dimen/padding_regular"
-                        android:text="@string/article_title"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        euclid:backgroundColor="#FFFF521C"
-                        euclid:layout_depth="match_parent"
-                        euclid:layout_offsetForward="200sp"
-                        euclid:textDepth="0dp" />
+                        android:orientation="horizontal"
+                        euclid:layout_depth="wrap_content">
 
+                        <EditText
+                            android:id="@+id/editText_main"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="@string/editText_main"
+                            android:inputType="textNoSuggestions"
+                            android:text=""
+                            euclid:layout_depth="fill_parent"
+                            android:visibility="visible"/> <!--  invisible : (  -->
 
-                </com.amazon.euclid.widget.ZRelativeLayout>
+                        <com.amazon.euclid.widget.ZButton
+                            android:id="@+id/button_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_margin="10dp"
+                            android:background="@color/blue"
+                            android:onClick="launchSecondActivity"
+                            android:text="@string/button_main"
+                            android:textColor="#ffffff"
+                            euclid:layout_depth="match_parent"
+                            euclid:textDepth="10dp" />
+                    </com.amazon.euclid.widget.ZLinearLayout>
+                </com.amazon.euclid.widget.ZLinearLayout>
             </com.amazon.euclid.widget.ZContainer>
-        </com.amazon.euclid.widget.ZShadowReceiver>
+        </LinearLayout>
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/content_shadow_receiver">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/article_subheading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_regular"
-                    android:text="@string/article_subtitle"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault" />
-
-                <TextView
-                    android:id="@+id/article"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoLink="web"
-                    android:lineSpacingExtra="@dimen/line_spacing"
-                    android:padding="@dimen/padding_regular"
-                    android:text="@string/article_text"/>
-
-                <Button
-                    android:id="@+id/shy_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/shy_button_text"/>
-            </LinearLayout>
-        </ScrollView>
-
-        <!--<ScrollView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/content_shadow_receiver">-->
-
-            <!--<com.amazon.euclid.widget.ZLinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--euclid:layout_depth="wrap_content"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<com.amazon.euclid.widget.ZTextView-->
-                    <!--android:id="@+id/article_subheading"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:padding="@dimen/padding_regular"-->
-                    <!--android:text="@string/article_subtitle"-->
-                    <!--euclid:layout_depth="match_parent"-->
-                    <!--android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />-->
-
-                <!--<com.amazon.euclid.widget.ZTextView-->
-                    <!--android:id="@+id/article"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:autoLink="web"-->
-                    <!--android:lineSpacingExtra="@dimen/line_spacing"-->
-                    <!--android:padding="@dimen/padding_regular"-->
-                    <!--android:text="@string/article_text"-->
-                    <!--euclid:layout_depth="match_parent"-->
-                    <!--android:textAppearance="@android:style/TextAppearance.DeviceDefault" />-->
-            <!--</com.amazon.euclid.widget.ZLinearLayout>-->
-        <!--</ScrollView>-->
-
-    </RelativeLayout>
-
+    </com.amazon.euclid.widget.ZShadowReceiver>
 </com.amazon.euclid.widget.ZParallaxBackground>

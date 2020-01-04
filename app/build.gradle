@@ -9,4 +9,7 @@ android {
             manifest.srcFile "AndroidManifest.xml"
         }
     }
+    dependencies {
+        compile 'com.android.support:recyclerview-v7:23.1.1'
+    }
 }
