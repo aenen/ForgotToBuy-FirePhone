@@ -31,7 +31,7 @@
                     amazon:headerTitle="@string/title_activity_main"
                     amazon:upNavigationEnabled="false"
                     euclid:layout_depth="wrap_content"
-                    euclid:widgetTheme="@euclid:style/Theme.Euclid.Dark" />
+                    euclid:widgetTheme="@euclid:style/Theme.Euclid.Light" />
             </com.amazon.euclid.widget.ZContainer>
 
             <com.amazon.euclid.widget.ZContainer
@@ -46,63 +46,40 @@
                     euclid:layout_depth="wrap_content">
 
                     <com.amazon.euclid.widget.ZTextView
-                        android:id="@+id/text_header_reply"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/text_header_reply"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:text="Buy this things for god's sake"
                         android:textStyle="bold"
-                        android:visibility="invisible"
-                        euclid:layout_depth="wrap_content"/>
-
-                    <com.amazon.euclid.widget.ZTextView
-                        android:id="@+id/text_message_reply"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_weight="1"
-                        android:text=""
-                        android:visibility="invisible"
-                        euclid:layout_depth="wrap_content"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+                        android:textAllCaps="true"
+                        euclid:layout_depth="match_parent"/>
 
                     <com.amazon.euclid.widget.ZLinearLayout
+                        android:id="@+id/shopping_list_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        euclid:layout_depth="wrap_content">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        euclid:layout_depth="wrap_content"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_vertical_margin"/>
 
-                        <EditText
-                            android:id="@+id/editText_main"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="@string/editText_main"
-                            android:inputType="textNoSuggestions"
-                            android:text=""
-                            euclid:layout_depth="fill_parent"
-                            android:visibility="visible"/> <!--  invisible : (  -->
+                    <com.amazon.euclid.widget.ZButton
+                        android:id="@+id/add_shopping_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_margin="10dp"
+                        android:background="#ffcb5086"
+                        android:text="@string/add_shopping_item_text"
+                        android:textColor="#ffffff"
+                        android:onClick="onAddShoppingItemClick"
+                        euclid:layout_depth="match_parent"
+                        euclid:textDepth="10dp" />
 
-                        <com.amazon.euclid.widget.ZButton
-                            android:id="@+id/button_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_margin="10dp"
-                            android:background="@color/blue"
-                            android:onClick="launchSecondActivity"
-                            android:text="@string/button_main"
-                            android:textColor="#ffffff"
-                            euclid:layout_depth="match_parent"
-                            euclid:textDepth="10dp" />
-                    </com.amazon.euclid.widget.ZLinearLayout>
                 </com.amazon.euclid.widget.ZLinearLayout>
             </com.amazon.euclid.widget.ZContainer>
         </LinearLayout>

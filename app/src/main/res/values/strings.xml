@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Two Activities</string>
-    <string name="title_activity_main">Two Activities…</string>
+    <string name="title_activity_main">Forgot to buy (v.0.0.0.0001)</string>
     <string name="action_settings">Налаштування</string>
     <string name="button_label_toast">ＴＯＡＳＴ</string>
     <string name="button_label_count">COUNT</string>
@@ -30,4 +30,5 @@
     <string name="button_second">Reply</string>
     <string name="editText_second">Enter Reply</string>
     <string name="text_header_reply">Reply Received</string>
+    <string name="add_shopping_item_text">☺ Add ☺</string>
 </resources>

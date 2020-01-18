@@ -1,5 +1,6 @@
 package com.dunno.aenen.forgottobuy;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,19 +21,19 @@ import android.widget.Toast;
 
 import com.amazon.euclid.util.TiltScrollController;
 import com.amazon.euclid.widget.ZContainer;
+import com.amazon.euclid.widget.ZLinearLayout;
 import com.amazon.euclid.widget.ZShadowReceiver;
 import com.amazon.euclid.widget.ZTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    public static final String EXTRA_MESSAGE =
-            "com.example.android.twoactivities.extra.MESSAGE";
-    private EditText mMessageEditText;
-    public static final int TEXT_REQUEST = 1;
-    private TextView mReplyHeadTextView;
-    private TextView mReplyTextView;
+    public static final int SHOPPING_ITEM_REQUEST = 1;
+    ZLinearLayout shoppingListContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,29 +48,69 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        // Initialize all the view variables.
-        mMessageEditText = (EditText) findViewById(R.id.editText_main);
-        mReplyHeadTextView =(TextView) findViewById(R.id.text_header_reply);
-        mReplyTextView =(TextView) findViewById(R.id.text_message_reply);
+        shoppingListContainer = (ZLinearLayout) findViewById(R.id.shopping_list_container);
 
         // Restore the state.
         // See onSaveInstanceState() for what gets saved.
+        Log.d(LOG_TAG, "savedInstanceState != null: " + (savedInstanceState != null));
         if (savedInstanceState != null) {
-            boolean isVisible =
-                    savedInstanceState.getBoolean("reply_visible");
+            ArrayList<String> shoppingItems = savedInstanceState.getStringArrayList("shoppingItems");
 
-            // Show both the header and the message views. If isVisible is
-            // false or missing from the bundle, use the default layout.
-            if (isVisible) {
-                mReplyHeadTextView.setVisibility(View.VISIBLE);
-                mReplyTextView.setText(savedInstanceState.getString("reply_text"));
-                mReplyTextView.setVisibility(View.VISIBLE);
+            if(shoppingItems != null) {
+                for (String shoppingItem : shoppingItems) {
+                    ZTextView textView = new ZTextView(this);
+                    textView.setText(shoppingItem);
+                    textView.setLayoutParams(new ZLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                    shoppingListContainer.addView(textView);
+                }
             }
         }
 
         final ZContainer headerBackground = (ZContainer) findViewById(R.id.header_shadow_receiver);
-        headerBackground.setBackgroundColor(Color.BLUE);
+        headerBackground.setBackgroundColor(Color.WHITE);
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Log.d(LOG_TAG, "onSaveInstanceState");
+
+        ArrayList<String> shoppingItemNames = new ArrayList<String>();
+
+        for (int i = 0; i < shoppingListContainer.getChildCount(); i++) {
+            View view = shoppingListContainer.getChildAt(i);
+
+            if (view instanceof ZTextView)
+                shoppingItemNames.add(((ZTextView)view).getText().toString());
+        }
+
+        outState.putStringArrayList("shoppingItems", shoppingItemNames);
+    }
+
+    public void onAddShoppingItemClick(View view) {
+        startActivityForResult(new Intent(this, SecondActivity.class), SHOPPING_ITEM_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SHOPPING_ITEM_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String shoppingItem = data.getStringExtra(SecondActivity.SHOPPING_ITEM_REPLY);
+
+                ZTextView textView = new ZTextView(this);
+                textView.setText(shoppingItem);
+                textView.setLayoutParams(new ZLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                shoppingListContainer.addView(textView);
+            }
+        }
+    }
+
+
 
     @Override
     public void onStart(){
@@ -105,38 +146,5 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(LOG_TAG, "onDestroy");
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mReplyHeadTextView.getVisibility() == View.VISIBLE) {
-            outState.putBoolean("reply_visible", true);
-            outState.putString("reply_text", mReplyTextView.getText().toString());
-        }
-    }
-
-    public void launchSecondActivity(View view) {
-        Log.d(LOG_TAG, "Button clicked!");
-
-        Intent intent =  new Intent(this,SecondActivity.class);
-        String message = mMessageEditText.getText().toString();
-
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivityForResult(intent, TEXT_REQUEST);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == TEXT_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                String reply = data.getStringExtra(SecondActivity.EXTRA_REPLY);
-                mReplyHeadTextView.setVisibility(View.VISIBLE);
-                mReplyTextView.setText(reply);
-                mReplyTextView.setVisibility(View.VISIBLE);
-            }
-        }
     }
 }
