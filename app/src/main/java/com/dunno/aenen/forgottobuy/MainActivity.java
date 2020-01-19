@@ -4,7 +4,10 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,120 +34,71 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    public static final int SHOPPING_ITEM_REQUEST = 1;
-    ZLinearLayout shoppingListContainer;
+    private EditText mWebsiteEditText;
+    private EditText mLocationEditText;
+    private EditText mShareTextEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        Log.d(LOG_TAG, "-------");
-        Log.d(LOG_TAG, "onCreate");
-
-        // Remove the title bar, and make the app fullscreen.
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.activity_main);
 
-        shoppingListContainer = (ZLinearLayout) findViewById(R.id.shopping_list_container);
+        mWebsiteEditText = (EditText) findViewById(R.id.website_edittext);
+        mLocationEditText = (EditText) findViewById(R.id.location_edittext);
+        mShareTextEditText = (EditText) findViewById(R.id.share_edittext);
 
-        // Restore the state.
-        // See onSaveInstanceState() for what gets saved.
-        Log.d(LOG_TAG, "savedInstanceState != null: " + (savedInstanceState != null));
-        if (savedInstanceState != null) {
-            ArrayList<String> shoppingItems = savedInstanceState.getStringArrayList("shoppingItems");
+    }
 
-            if(shoppingItems != null) {
-                for (String shoppingItem : shoppingItems) {
-                    ZTextView textView = new ZTextView(this);
-                    textView.setText(shoppingItem);
-                    textView.setLayoutParams(new ZLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    public void openWebsite(View view) {
+        // Get the URL text.
+        String url = mWebsiteEditText.getText().toString();
 
-                    shoppingListContainer.addView(textView);
-                }
-            }
+        // Parse the URI and create the intent.
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+
+        // Find an activity to hand the intent and start that activity.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d("ImplicitIntents", "Can't handle this!");
         }
 
-        final ZContainer headerBackground = (ZContainer) findViewById(R.id.header_shadow_receiver);
-        headerBackground.setBackgroundColor(Color.WHITE);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    public void openLocation(View view) {
+        // Get the string indicating a location. Input is not validated; it is
+        // passed to the location handler intact.
+        String loc = mLocationEditText.getText().toString();
 
-        Log.d(LOG_TAG, "onSaveInstanceState");
+        // Parse the location and create the intent.
+        Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
+        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
 
-        ArrayList<String> shoppingItemNames = new ArrayList<String>();
-
-        for (int i = 0; i < shoppingListContainer.getChildCount(); i++) {
-            View view = shoppingListContainer.getChildAt(i);
-
-            if (view instanceof ZTextView)
-                shoppingItemNames.add(((ZTextView)view).getText().toString());
-        }
-
-        outState.putStringArrayList("shoppingItems", shoppingItemNames);
-    }
-
-    public void onAddShoppingItemClick(View view) {
-        startActivityForResult(new Intent(this, SecondActivity.class), SHOPPING_ITEM_REQUEST);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == SHOPPING_ITEM_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                String shoppingItem = data.getStringExtra(SecondActivity.SHOPPING_ITEM_REPLY);
-
-                ZTextView textView = new ZTextView(this);
-                textView.setText(shoppingItem);
-                textView.setLayoutParams(new ZLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-                shoppingListContainer.addView(textView);
-            }
+        // Find an activity to handle the intent, and start that activity.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d("ImplicitIntents", "Can't handle this intent!");
         }
     }
 
-
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        Log.d(LOG_TAG, "onStart");
+    public void shareText(View view) {
+        String txt = mShareTextEditText.getText().toString();
+        String mimeType = "text/plain";
+        ShareCompat.IntentBuilder
+                .from(this)
+                .setType(mimeType)
+                .setChooserTitle("Share this text with: ")
+                .setText(txt)
+                .startChooser();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(LOG_TAG, "onPause");
-    }
+    public void takePicture(View view) {
+        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(takePicture.resolveActivity(getPackageManager()) != null)
+            startActivity(takePicture);
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(LOG_TAG, "onRestart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(LOG_TAG, "onResume");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(LOG_TAG, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(LOG_TAG, "onDestroy");
     }
 }

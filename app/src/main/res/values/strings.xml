@@ -2,33 +2,14 @@
     <string name="app_name">Two Activities</string>
     <string name="title_activity_main">Forgot to buy (v.0.0.0.0001)</string>
     <string name="action_settings">Налаштування</string>
-    <string name="button_label_toast">ＴＯＡＳＴ</string>
-    <string name="button_label_count">COUNT</string>
-    <string name="count_initial_value">0</string>
-    <string name="toast_message">Hello ＴＯＡＳＴ!</string>
-    <string name="article_title">Рецепт здобних булочок</string>
-    <string name="article_subtitle">Щоб їсти булочку і гладити кота</string>
-    <string name="article_text">
-        https://uk.wikipedia.org/wiki/Кіт
-        \n\n
-        <b><i><u>Опара:</u></i></b>
-        \n
-        У теплу воду всипати дріжджі, щіпку цукру. Залишити до збільшення об\'єму в два рази — хвилин на 10-15.
-        Замісити опару і перемішати міксером (спеціальним для тіста або звичайним з насадками для тіста) на середній швидкості протягом 8-10 хвилин.
-        \n
-        Час бродіння опари 4,5 години при 30 градусах (або включайте духовку і опару тримаєте згори плити, або в теплу воду ставте і стежите за постійною температурою, зараз у нас вже +24 тепло, тому я просто ставила в будинку на сонечко, якщо в зимовий сезон — можна поставити на радіатор, але… враховуйте, що температура в радіаторах може бути 60 градусів, тому робіть прошарок з великого банного рушника). Опару не треба «забувати» на увесь цей час, протягом бродіння, після збільшення об\'єму опари в 2 рази, треба хоч би 3 рази опару добре вимісити, підгодовуючи дріжджі «свіженьким».
-        \n\n
-    </string>
-    <string name="shy_button_text"><![CDATA[Don\'t touch me!!! >o<]]></string>
-    <string name="button_main">Send</string>
 
-    <color name="blue">#061b9b</color>
-    <string name="title_activity_second">SecondActivity</string>
+    <string name="edittext_uri">http://developer.android.com</string>
+    <string name="button_uri">Open Website</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="editText_main">Enter Your Message Here</string>
-    <string name="button_second">Reply</string>
-    <string name="editText_second">Enter Reply</string>
-    <string name="text_header_reply">Reply Received</string>
-    <string name="add_shopping_item_text">☺ Add ☺</string>
+    <string name="edittext_loc">Golden Gate Bridge</string>
+    <string name="button_loc">Open Location</string>
+
+    <string name="edittext_share">\'Twas brillig and the slithy toves</string>
+    <string name="button_share">Share This Text</string>
+    <string name="take_picture_button">Take a picture</string>
 </resources>
