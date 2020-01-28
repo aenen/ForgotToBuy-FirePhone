@@ -1,12 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.amazon.euclid.widget.ZParallaxBackground xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context="com.dunno.aenen.forgottobuy.MainActivity">
+    android:orientation="vertical">
 
+    <com.amazon.euclid.widget.ZShadowReceiver
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
 
+        <com.amazon.euclid.widget.ZContainer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            euclid:layout_depth="wrap_content">
 
-</LinearLayout>
+            <com.amazon.euclid.widget.ZLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                euclid:layout_depth="wrap_content">
+
+                <com.amazon.euclid.widget.ZTextView
+                    android:id="@+id/hello_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/hello_world"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textSize="100sp"
+                    euclid:layout_depth="wrap_content" />
+
+                <com.amazon.euclid.widget.ZButton
+                    android:id="@+id/color_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:onClick="changeColor"
+                    android:text="@string/change_color"
+                    euclid:layout_depth="match_parent"
+                    euclid:textDepth="10dp" />
+            </com.amazon.euclid.widget.ZLinearLayout>
+        </com.amazon.euclid.widget.ZContainer>
+    </com.amazon.euclid.widget.ZShadowReceiver>
+</com.amazon.euclid.widget.ZParallaxBackground>
