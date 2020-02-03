@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- VBL and scene names should not be localized. -->
+    <!-- Built-in vbl file named 'glyphs', with scene called glyph_new -->
+    <string name="zheadernavbar_action_1_scene">:glyphs:glyph_new</string>
+</resources>

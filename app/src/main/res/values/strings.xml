@@ -9,5 +9,10 @@
     <string name="donut_order_message">You ordered a donut.</string>
     <string name="ice_cream_order_message">You ordered an ice cream sandwich.</string>
     <string name="froyo_order_message">You ordered a FroYo.</string>
+    <string name="zheadernvabar_subtitle">Give me money</string>
+    <string name="zheadernavbar_action_1_title">Order</string>
+    <string name="title_activity_order">Order</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
