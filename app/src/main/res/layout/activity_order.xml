@@ -86,8 +86,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="24dp">
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/address_label"
@@ -112,8 +112,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="24dp">
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/phone_label"
@@ -125,15 +125,106 @@
 
                     <EditText
                         android:id="@+id/phone_text"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:ems="10"
                         android:hint="@string/enter_phone_hint"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="phone" />
+
+                    <Spinner
+                        android:id="@+id/label_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/note_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"
+                        android:text="@string/note_label_text" />
+
+                    <EditText
+                        android:id="@+id/note_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:ems="10"
+                        android:hint="@string/enter_note_hint"
+                        android:inputType="textCapSentences|textMultiLine" />
+
+                </LinearLayout>
+
+                <com.amazon.euclid.widget.ZContainer
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="25sp">
+
+                    <com.amazon.euclid.widget.ZLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="24dp"
+                        android:orientation="vertical"
+                        euclid:layout_depth="wrap_content">
+
+                        <com.amazon.euclid.widget.ZTextView
+                            android:id="@+id/delivery_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginStart="24dp"
+                            android:text="@string/choose_delivery_method"
+                            euclid:layout_depth="wrap_content" />
+
+                        <com.amazon.euclid.widget.ZRadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginStart="24dp"
+                            android:orientation="vertical"
+                            euclid:layout_depth="wrap_content">
+
+                            <com.amazon.euclid.widget.ZRadioButton
+                                android:id="@+id/sameday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
+                                android:text="@string/same_day_messenger_service"
+                                euclid:layout_depth="wrap_content" />
+
+                            <com.amazon.euclid.widget.ZRadioButton
+                                android:id="@+id/nextday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
+                                android:text="@string/next_day_ground_delivery"
+                                android:checked="true"
+                                euclid:layout_depth="wrap_content" />
+
+                            <com.amazon.euclid.widget.ZRadioButton
+                                android:id="@+id/pickup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="onRadioButtonClicked"
+                                android:text="@string/pick_up"
+                                euclid:layout_depth="wrap_content" />
+
+                        </com.amazon.euclid.widget.ZRadioGroup>
+
+                    </com.amazon.euclid.widget.ZLinearLayout>
+                </com.amazon.euclid.widget.ZContainer>
             </LinearLayout>
         </com.amazon.euclid.widget.ZShadowReceiver>
     </LinearLayout>
