@@ -88,7 +88,7 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
      */
     @Override
     public void onActionClick(MenuItem menuItem) {
-        Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+        Intent intent = new Intent(MainActivity.this, CheckboxesActivity.class);
         intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
         startActivity(intent);
     }

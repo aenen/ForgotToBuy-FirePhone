@@ -34,4 +34,12 @@
         <item>Mobile</item>
         <item>Other</item>
     </string-array>
+    <string name="title_activity_checkboxes">CheckboxesActivity</string>
+    <string name="choose_topping_text">Choose your toppings</string>
+    <string name="chocolate_syrup_text">Chocolate syrup</string>
+    <string name="sprinkles_text">Sprinkles</string>
+    <string name="cherries_text">Cherries</string>
+    <string name="crushed_nuts_text">Crushed nuts</string>
+    <string name="oreo_text">Oreo cookie crumbles</string>
+    <string name="show_toppings_text">Show toppings</string>
 </resources>

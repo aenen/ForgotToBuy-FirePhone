@@ -49,6 +49,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.dunno.aenen.forgottobuy.MainActivity" />
         </activity>
+        <activity
+            android:name=".CheckboxesActivity"
+            android:label="@string/title_activity_checkboxes" >
+        </activity>
     </application>
 
 </manifest>
