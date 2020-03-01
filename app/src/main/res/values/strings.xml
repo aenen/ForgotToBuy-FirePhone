@@ -44,4 +44,13 @@
     <string name="show_toppings_text">Show toppings</string>
     <string name="action_favorite_text">Favorite</string>
     <string name="action_status_text">Status</string>
+    <string name="title_activity_dialog">DialogActivity</string>
+    <string name="dialog_title_text">Tap to test the alert</string>
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="title_activity_date_picker">DatePickerActivity</string>
+    <string name="date_picker_title_text">Hello : ) Choose a date, please!</string>
+
+    <string name="datepicker">datePicker</string>
+    <string name="date">"Date: "</string>
 </resources>

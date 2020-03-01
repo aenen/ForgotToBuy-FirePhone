@@ -99,10 +99,12 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
                 startActivity(intent);
                 break;
             case R.id.action_status:
-                displayToast(getString(R.string.action_status_text));
+                Intent dialogIntent = new Intent(MainActivity.this, DialogActivity.class);
+                startActivity(dialogIntent);
                 break;
             case R.id.action_favorite:
-                displayToast(getString(R.string.action_favorite_text));
+                Intent datePickerIntent = new Intent(MainActivity.this, DatePickerActivity.class);
+                startActivity(datePickerIntent);
                 break;
         }
     }

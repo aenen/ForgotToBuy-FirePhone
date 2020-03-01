@@ -53,6 +53,14 @@
             android:name=".CheckboxesActivity"
             android:label="@string/title_activity_checkboxes" >
         </activity>
+        <activity
+            android:name=".DialogActivity"
+            android:label="@string/title_activity_dialog" >
+        </activity>
+        <activity
+            android:name=".DatePickerActivity"
+            android:label="@string/title_activity_date_picker" >
+        </activity>
     </application>
 
 </manifest>
