@@ -23,6 +23,8 @@
                 amazon:actionsMenu="@menu/menu_zheadernavigationbar"
                 amazon:headerSubtitle="@string/zheadernvabar_subtitle"
                 amazon:headerTitle="@string/title_activity_main"
+                amazon:headerSecondaryText=""
+                amazon:maxActionsVisible="4"
                 euclid:layout_depth="wrap_content"
                 euclid:widgetTheme="@euclid:style/Theme.Euclid.Dark" />
         </com.amazon.euclid.widget.ZContainer>

@@ -12,7 +12,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,8 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
 
         final ZHeaderNavigationBar headerNavBar = (ZHeaderNavigationBar) findViewById(R.id.zheadernavigationbar);
         headerNavBar.setOnHeaderActionsClickListener(this);
+
+        registerForContextMenu(headerNavBar);
     }
 
     public void displayToast(String message) {
@@ -88,8 +92,43 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
      */
     @Override
     public void onActionClick(MenuItem menuItem) {
-        Intent intent = new Intent(MainActivity.this, CheckboxesActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
-        startActivity(intent);
+        switch (menuItem.getItemId()){
+            case R.id.action_order:
+                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
+                startActivity(intent);
+                break;
+            case R.id.action_status:
+                displayToast(getString(R.string.action_status_text));
+                break;
+            case R.id.action_favorite:
+                displayToast(getString(R.string.action_favorite_text));
+                break;
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.context_edit:
+                displayToast("Edit choice clicked.");
+                return true;
+            case R.id.context_share:
+                displayToast("Share choice clicked.");
+                return true;
+            case R.id.context_delete:
+                displayToast("Delete choice clicked.");
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

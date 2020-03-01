@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu1"
+        android:id="@+id/action_order"
         android:title="@string/zheadernavbar_action_1_title"
-        android:icon="@string/zheadernavbar_action_1_scene" />
+        android:icon="@string/zheadernavbar_action_order"
+        android:showAsAction="never"
+        android:orderInCategory="30"/>
 
+    <item
+        android:id="@+id/action_status"
+        android:title="@string/action_status_text"
+        android:icon="@string/zheadernavbar_action_status"
+        android:showAsAction="never"
+        android:visible="true"
+        android:orderInCategory="20" />
+
+    <item
+        android:id="@+id/action_favorite"
+        android:title="@string/action_favorite_text"
+        android:icon="@string/zheadernavbar_action_favorite"
+        android:showAsAction="never"
+        android:visible="true"
+        android:orderInCategory="10" />
 </menu>
