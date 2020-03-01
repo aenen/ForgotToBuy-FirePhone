@@ -53,4 +53,12 @@ public class DatePickerActivity extends Activity {
 
         Toast.makeText(this, getString(R.string.date) + dateMessage, Toast.LENGTH_SHORT).show();
     }
+
+    public void processTimePickerResult(int hour, int minute) {
+        String hour_string = Integer.toString(hour);
+        String minute_string = Integer.toString(minute);
+        String timeMessage = (hour_string + ":" + minute_string);
+
+        Toast.makeText(this, getString(R.string.time) + timeMessage, Toast.LENGTH_SHORT).show();
+    }
 }
