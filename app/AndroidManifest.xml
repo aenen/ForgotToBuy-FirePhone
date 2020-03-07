@@ -61,6 +61,10 @@
             android:name=".DatePickerActivity"
             android:label="@string/title_activity_date_picker" >
         </activity>
+        <activity
+            android:name=".TabBarActivity"
+            android:label="@string/title_activity_tab_bar" >
+        </activity>
     </application>
 
 </manifest>
