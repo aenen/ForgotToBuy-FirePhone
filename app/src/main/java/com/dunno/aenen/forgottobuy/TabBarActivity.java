@@ -73,7 +73,17 @@ public class TabBarActivity extends Activity implements OnTabChangeListener, OnC
     @Override
     public void onTabSelected(TabBarItem tabBarItem) {
         Log.v(TAG, "onTabSelected: " + tabBarItem.getText());
-        getFragmentManager().beginTransaction().replace(R.id.tabContent, new TabFragment1()).commit();
+        switch (tabBarItem.getId()){
+            case R.id.ztabbaritem1:
+                getFragmentManager().beginTransaction().replace(R.id.tabContent, new TabFragment1()).commit();
+                break;
+            case R.id.ztabbaritem2:
+                getFragmentManager().beginTransaction().replace(R.id.tabContent, new TabFragment2()).commit();
+                break;
+            case R.id.ztabbaritem3:
+                getFragmentManager().beginTransaction().replace(R.id.tabContent, new TabFragment3()).commit();
+                break;
+        }
     }
 
     /**
