@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="6dp">
 
-    <TextView
-        android:id="@+id/word"
-        style="@style/word_title" />
+    <com.amazon.euclid.widget.ZContainer
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="24dp"
+        euclid:layout_depth="wrap_content">
+
+        <com.amazon.euclid.widget.ZExtrudedText
+            android:id="@+id/word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            euclid:layout_depth="wrap_content"
+            android:textColor="#AAA"
+            android:textSize="30sp"
+            euclid:autoSize="false"
+            euclid:extrusionColor="#FFF"
+            euclid:letterSpacing="1"
+            euclid:maxTextSize="30sp"
+            euclid:minTextSize="30sp"
+            euclid:textDepth="10sp"
+            euclid:typeface="AndroidEmoji" />
+    </com.amazon.euclid.widget.ZContainer>
 
 </LinearLayout>

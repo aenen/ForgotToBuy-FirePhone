@@ -6,15 +6,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.amazon.euclid.widget.ZToolBarItem;
 
 import java.util.LinkedList;
 
 
-public class RecyclerViewActivity extends Activity {
+public class RecyclerViewActivity extends Activity implements View.OnClickListener {
 
     private final LinkedList<String> mWordList = new LinkedList<String>();
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,18 @@ public class RecyclerViewActivity extends Activity {
         mRecyclerView.setAdapter(mAdapter);
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ZToolBarItem toolBarItem = null;
+
+        // TabBarItem must have their onClickListeners and popupListeners set outside of the layout.
+        toolBarItem = (ZToolBarItem)findViewById(R.id.addRvItem);
+        toolBarItem.setOnClickListener(this);
+
+        toolBarItem = (ZToolBarItem)findViewById(R.id.removeFirstRvItem);
+        toolBarItem.setOnClickListener(this);
+
+        toolBarItem = (ZToolBarItem)findViewById(R.id.removeLastRvItem);
+        toolBarItem.setOnClickListener(this);
     }
 
 
@@ -55,5 +71,33 @@ public class RecyclerViewActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.addRvItem:
+                int wordListSize = mWordList.size();
+                // Add a new word to the wordList.
+                mWordList.addLast("+ Word " + wordListSize);
+                // Notify the adapter, that the data has changed.
+                mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
+                // Scroll to the bottom.
+                mRecyclerView.smoothScrollToPosition(wordListSize);
+                break;
+            case R.id.removeFirstRvItem:
+                mWordList.removeFirst();
+                mRecyclerView.getAdapter().notifyItemRemoved(0);
+                ((LinearLayoutManager)mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(0,0);
+//                new LinearLayoutManager(this).scrollToPositionWithOffset(0, 0);
+//                mRecyclerView.smoothScrollToPosition(0);
+                break;
+            case R.id.removeLastRvItem:
+                mWordList.removeLast();
+                mRecyclerView.getAdapter().notifyItemRemoved(mWordList.size());
+                mRecyclerView.smoothScrollToPosition(mWordList.size() - 1);
+                break;
+        }
     }
 }

@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.amazon.euclid.widget.ZExtrudedText;
+import com.amazon.euclid.widget.ZTextView;
+
 import java.util.LinkedList;
 
 /**
@@ -40,15 +43,29 @@ public class WordListAdapter extends
         return mWordList.size();
     }
 
-    class WordViewHolder extends RecyclerView.ViewHolder {
-        public final TextView wordItemView;
+    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public final ZExtrudedText wordItemView;
         final WordListAdapter mAdapter;
 
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
 
-            wordItemView = (TextView) itemView.findViewById(R.id.word);
+            wordItemView = (ZExtrudedText) itemView.findViewById(R.id.word);
             this.mAdapter = adapter;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            // Get the position of the item that was clicked.
+            int mPosition = getLayoutPosition();
+            // Use that to access the affected item in mWordList.
+            String element = mWordList.get(mPosition);
+            // Change the word in the mWordList.
+            mWordList.set(mPosition, "Clicked! " + element);
+            // Notify the adapter, that the data has changed so it can
+            // update the RecyclerView to display the data.
+            mAdapter.notifyDataSetChanged();
         }
     }
 
