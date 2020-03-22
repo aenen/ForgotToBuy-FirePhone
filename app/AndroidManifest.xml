@@ -65,6 +65,10 @@
             android:name=".TabBarActivity"
             android:label="@string/title_activity_tab_bar" >
         </activity>
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:label="@string/title_activity_recycler_view" >
+        </activity>
     </application>
 
 </manifest>

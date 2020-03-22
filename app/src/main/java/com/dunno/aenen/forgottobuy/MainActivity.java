@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
     public void onActionClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.action_order:
-                Intent intent = new Intent(MainActivity.this, TabBarActivity.class);
+                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
                 intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
                 startActivity(intent);
                 break;
