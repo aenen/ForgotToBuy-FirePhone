@@ -9,7 +9,7 @@
 
     <style name="ScoreButtons" parent="android:Widget.Button">
         <item name="android:tint">@color/pink</item>
-        <item name="android:background">@drawable/button_background</item>
+        <item name="android:background">@drawable/button_selector</item>
         <item name="android:contentDescription">@string/plus_button_description</item>
     </style>
     <style name="PlusButtons" parent="ScoreButtons">
