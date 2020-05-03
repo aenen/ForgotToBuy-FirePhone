@@ -1,0 +1,55 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.amazon.euclid.widget.ZContainer
+        euclid:layout_depth="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.amazon.euclid.widget.ZRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            euclid:layout_depth="wrap_content">
+
+            <com.amazon.euclid.widget.ZImageView
+                android:id="@+id/sportsImageDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                android:adjustViewBounds="true"
+                euclid:layout_depth="wrap_content" />
+
+            <com.amazon.euclid.widget.ZTextView
+                android:id="@+id/titleDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sportsImageDetail"
+                android:padding="16dp"
+                android:text="@string/title_placeholder"
+                android:textColor="#FFF"
+                android:textSize="27.5sp"
+                euclid:layout_depth="wrap_content" />
+
+            <com.amazon.euclid.widget.ZTextView
+                android:id="@+id/newsTitleDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleDetail"
+                android:padding="16dp"
+                android:text="@string/news_placeholder"
+                android:textColor="?android:textColorSecondary"
+                euclid:layout_depth="wrap_content" />
+
+            <com.amazon.euclid.widget.ZTextView
+                android:id="@+id/subTitleDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/newsTitleDetail"
+                android:padding="16dp"
+                android:text="@string/sub_title_detail_text"
+                euclid:layout_depth="wrap_content" />
+        </com.amazon.euclid.widget.ZRelativeLayout>
+    </com.amazon.euclid.widget.ZContainer>
+</ScrollView>

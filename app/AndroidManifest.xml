@@ -23,7 +23,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@euclid:style/Theme.Euclid.Light.NoTitleBar" >
-        <!--android:theme="@euclid:style/Theme.Euclid.Light" >-->
+
+        <!-- android:theme="@euclid:style/Theme.Euclid.Light" > -->
+
 
         <!-- Dynamic Perspective Controls require euclidlibary and eaclibrary. -->
         <uses-library
@@ -74,6 +76,14 @@
             android:name=".ScorekeeperActivity"
             android:label="@string/title_activity_scorekeeper"
             android:theme="@euclid:style/Theme.Euclid.Dark" >
+        </activity>
+        <activity
+            android:name=".SportsActivity"
+            android:label="@string/title_activity_sports" >
+        </activity>
+        <activity
+            android:name=".SportDetailActivity"
+            android:label="@string/title_activity_sport_detail" >
         </activity>
     </application>
 

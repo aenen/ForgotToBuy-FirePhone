@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <com.amazon.euclid.widget.ZContainer
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        euclid:layout_depth="wrap_content">
+
+        <com.amazon.euclid.widget.ZRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            euclid:layout_depth="wrap_content">
+
+            <com.amazon.euclid.widget.ZImageView
+                android:id="@+id/sportsImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.5dp"
+                euclid:layout_depth="wrap_content"
+                android:adjustViewBounds="true"/>
+
+            <com.amazon.euclid.widget.ZTextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/title_placeholder"
+                android:textColor="#FFF"
+                android:textSize="27.5sp"
+                android:layout_alignBottom="@id/sportsImage"
+                euclid:layout_depth="wrap_content"/>
+
+            <com.amazon.euclid.widget.ZTextView
+                android:id="@+id/newsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/news_placeholder"
+                android:layout_below="@id/sportsImage"
+                android:textColor="?android:textColorSecondary"
+                euclid:layout_depth="wrap_content" />
+
+            <com.amazon.euclid.widget.ZTextView
+                android:id="@+id/subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_below="@id/newsTitle"
+                euclid:layout_depth="wrap_content"
+                android:text="@string/sports_info_placeholder" />
+        </com.amazon.euclid.widget.ZRelativeLayout>
+    </com.amazon.euclid.widget.ZContainer>
+</android.support.v7.widget.CardView>

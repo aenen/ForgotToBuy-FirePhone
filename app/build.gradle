@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion "Amazon.com:Amazon Fire Phone SDK Addon:17"
     buildToolsVersion "21.1.2"
@@ -11,7 +10,12 @@ android {
     }
     dependencies {
         compile 'com.android.support:recyclerview-v7:23.1.1'
+        compile 'com.android.support:cardview-v7:23.1.1'
 //        compile 'com.android.support:support-v4:22.0.0'
 //        compile 'com.android.support:appcompat-v7:22.0.0'
     }
+}
+
+dependencies {
+    compile files('libs/glide-3.7.0.jar')
 }

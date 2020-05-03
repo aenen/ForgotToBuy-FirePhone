@@ -16,6 +16,7 @@ import java.util.LinkedList;
 public class RecyclerViewActivity extends Activity implements View.OnClickListener {
 
     private final LinkedList<String> mWordList = new LinkedList<String>();
+
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
 
@@ -24,7 +25,7 @@ public class RecyclerViewActivity extends Activity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             mWordList.addLast("Word " + i);
         }
 
