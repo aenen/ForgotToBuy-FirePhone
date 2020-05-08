@@ -19,6 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2.5dp"
                 android:adjustViewBounds="true"
+                style="@style/SportsDetailTitle"
                 euclid:layout_depth="wrap_content" />
 
             <com.amazon.euclid.widget.ZTextView
@@ -40,6 +41,7 @@
                 android:padding="16dp"
                 android:text="@string/news_placeholder"
                 android:textColor="?android:textColorSecondary"
+                style="@style/SportsDetailText"
                 euclid:layout_depth="wrap_content" />
 
             <com.amazon.euclid.widget.ZTextView
@@ -49,6 +51,7 @@
                 android:layout_below="@id/newsTitleDetail"
                 android:padding="16dp"
                 android:text="@string/sub_title_detail_text"
+                style="@style/SportsDetailText"
                 euclid:layout_depth="wrap_content" />
         </com.amazon.euclid.widget.ZRelativeLayout>
     </com.amazon.euclid.widget.ZContainer>
