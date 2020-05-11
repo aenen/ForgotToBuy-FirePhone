@@ -38,11 +38,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".OrderActivity"
@@ -84,6 +79,15 @@
         <activity
             android:name=".SportDetailActivity"
             android:label="@string/title_activity_sport_detail" >
+        </activity>
+        <activity
+            android:name=".AsyncTaskActivity"
+            android:label="@string/title_activity_async_task" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
