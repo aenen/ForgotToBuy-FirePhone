@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Yaroslav on 10.05.2020.
  */
-public class SimpleAsyncTask extends AsyncTask<Void, Void, String>{
+public class SimpleAsyncTask extends AsyncTask<Void, Integer, String>{
     private WeakReference<TextView> mTextView;
 
     SimpleAsyncTask(TextView tv) {
@@ -19,17 +19,26 @@ public class SimpleAsyncTask extends AsyncTask<Void, Void, String>{
     @Override
     protected String doInBackground(Void... voids) {
         Random r = new Random();
-        int n = r.nextInt(11);
+        int n = r.nextInt(11) * 200;
 
-        int s = n * 200;
+        int s = 0;
 
         try {
-            Thread.sleep(s);
+            while(s < n) {
+                Thread.sleep(1);
+                s++;
+                publishProgress(s);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         return "Awake at last after sleeping for " + s + " milliseconds!";
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        mTextView.get().setText(values[0].toString());
     }
 
     protected void onPostExecute(String result) {
