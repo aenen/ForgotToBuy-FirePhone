@@ -17,6 +17,9 @@
     <android:uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -83,6 +86,10 @@
         <activity
             android:name=".AsyncTaskActivity"
             android:label="@string/title_activity_async_task" >
+        </activity>
+        <activity
+            android:name=".WhoWroteItActivity"
+            android:label="@string/title_activity_who_wrote_it" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
