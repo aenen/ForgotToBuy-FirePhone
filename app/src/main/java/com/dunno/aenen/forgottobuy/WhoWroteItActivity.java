@@ -78,7 +78,6 @@ public class WhoWroteItActivity extends Activity implements LoaderManager.Loader
             queryBundle.putString("queryString", queryString);
             getLoaderManager().restartLoader(0, queryBundle, this);
 
-            new FetchBook(mTitleText, mAuthorText).execute(queryString);
             mAuthorText.setText("");
             mTitleText.setText(getString(R.string.loading));
         } else {
