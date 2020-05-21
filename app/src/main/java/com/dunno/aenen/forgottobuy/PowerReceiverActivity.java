@@ -23,6 +23,7 @@ public class PowerReceiverActivity extends Activity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         filter.addAction(Intent.ACTION_POWER_CONNECTED);
+        filter.addAction(Intent.ACTION_HEADSET_PLUG);
 
         this.registerReceiver(mReceiver, filter);
 

@@ -29,6 +29,8 @@ public class CustomReceiver extends BroadcastReceiver {
                 toastMessage = "Power disconnected!";
             else if (intentAction==ACTION_CUSTOM_BROADCAST)
                 toastMessage = "Custom Broadcast Received";
+            else if (intentAction==Intent.ACTION_HEADSET_PLUG)
+                toastMessage = "Headset plugged (or unplugged, dunno)";
 
             Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show();
         }
