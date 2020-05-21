@@ -135,5 +135,7 @@
         <item>http://</item>
         <item>https://</item>
     </string-array>
+    <string name="title_activity_power_receiver">PowerReceiverActivity</string>
+    <string name="send_broadcast_text">Send Custom Broadcast</string>
 
 </resources>

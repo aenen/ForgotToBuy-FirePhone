@@ -94,6 +94,10 @@
         <activity
             android:name=".WebPageActivity"
             android:label="@string/title_activity_web_page" >
+        </activity>
+        <activity
+            android:name=".PowerReceiverActivity"
+            android:label="@string/title_activity_power_receiver" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
