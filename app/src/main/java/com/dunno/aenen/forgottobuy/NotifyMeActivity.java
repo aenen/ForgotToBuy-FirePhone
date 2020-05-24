@@ -24,6 +24,7 @@ public class NotifyMeActivity extends Activity {
 
     private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
     private static final String ACTION_UPDATE_NOTIFICATION = BuildConfig.APPLICATION_ID + ".ACTION_UPDATE_NOTIFICATION";
+    private static final String ACTION_NOTIFICATION_DISMISSED = BuildConfig.APPLICATION_ID + ".ACTION_NOTIFICATION_DISMISSED";
     private static final int NOTIFICATION_ID = 0;
 
     private NotificationManager mNotifyManager;
@@ -69,7 +70,10 @@ public class NotifyMeActivity extends Activity {
 
         createNotificationChannel();
         setNotificationButtonState(true, false, false);
-        registerReceiver(mReceiver, new IntentFilter(ACTION_UPDATE_NOTIFICATION));
+
+        IntentFilter filter = new IntentFilter(ACTION_UPDATE_NOTIFICATION);
+        filter.addAction(ACTION_NOTIFICATION_DISMISSED);
+        registerReceiver(mReceiver, filter);
     }
 
     public  void createNotificationChannel() {
@@ -80,14 +84,20 @@ public class NotifyMeActivity extends Activity {
         Intent notificationIntent = new Intent(this, this.getClass());
         PendingIntent notificationPendingIntent = PendingIntent.getActivity(this,
                 NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent deleteIntent = new Intent(ACTION_NOTIFICATION_DISMISSED);
+        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, deleteIntent, PendingIntent.FLAG_ONE_SHOT);
+
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this);
+
         notifyBuilder.setContentTitle("You've been notified!")
                 .setContentText("This is your notification text.")
                 .setSmallIcon(R.drawable.ic_plus)
                 .setContentIntent(notificationPendingIntent)
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setDefaults(NotificationCompat.DEFAULT_ALL);
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setDeleteIntent(deletePendingIntent);
 
         return notifyBuilder;
     }
@@ -96,6 +106,7 @@ public class NotifyMeActivity extends Activity {
         Intent updateIntent = new Intent(ACTION_UPDATE_NOTIFICATION);
         PendingIntent updatePendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, updateIntent, PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
+
         notifyBuilder.addAction(R.drawable.ic_update, "Update Notification", updatePendingIntent);
         mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build());
         setNotificationButtonState(false, true, true);
@@ -132,7 +143,14 @@ public class NotifyMeActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            updateNotification();
+            String intentAction = intent.getAction();
+
+            if (intentAction != null) {
+                if (intentAction == ACTION_UPDATE_NOTIFICATION)
+                    updateNotification();
+                else if (intentAction == ACTION_NOTIFICATION_DISMISSED)
+                    cancelNotification();
+            }
         }
     }
 }
