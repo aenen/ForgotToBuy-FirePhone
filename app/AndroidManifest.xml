@@ -98,6 +98,10 @@
         <activity
             android:name=".PowerReceiverActivity"
             android:label="@string/title_activity_power_receiver" >
+        </activity>
+        <activity
+            android:name=".NotifyMeActivity"
+            android:label="@string/title_activity_notify_me" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

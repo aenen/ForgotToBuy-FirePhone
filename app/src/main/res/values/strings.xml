@@ -137,5 +137,6 @@
     </string-array>
     <string name="title_activity_power_receiver">PowerReceiverActivity</string>
     <string name="send_broadcast_text">Send Custom Broadcast</string>
+    <string name="title_activity_notify_me">NotifyMeActivity</string>
 
 </resources>
