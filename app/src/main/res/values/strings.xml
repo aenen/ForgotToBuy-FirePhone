@@ -138,5 +138,10 @@
     <string name="title_activity_power_receiver">PowerReceiverActivity</string>
     <string name="send_broadcast_text">Send Custom Broadcast</string>
     <string name="title_activity_notify_me">NotifyMeActivity</string>
+    <string name="title_activity_stand_up">StandUpActivity</string>
+    <string name="alarm_off">Alarm off</string>
+    <string name="alarm_on">Alarm on</string>
+    <string name="alarm_on_desc">Stand Up Alarm On!</string>
+    <string name="alarm_off_desc">Stand Up Alarm Off!</string>
 
 </resources>
