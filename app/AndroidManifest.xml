@@ -106,11 +106,6 @@
         <activity
             android:name=".StandUpActivity"
             android:label="@string/title_activity_stand_up" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <receiver
@@ -118,6 +113,16 @@
             android:enabled="true"
             android:exported="false" >
         </receiver>
+
+        <activity
+            android:name=".HelloSharedPrefsActivity"
+            android:label="@string/title_activity_hello_shared_prefs" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
