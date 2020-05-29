@@ -41,9 +41,6 @@ import amazon.widget.OnActionsMenuClickListener;
 
 public class MainActivity extends Activity implements OnActionsMenuClickListener {
 
-    public static final String EXTRA_MESSAGE = "com.dunno.aenen.forgottobuy.extra.MESSAGE";
-    private String mOrderMessage;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,34 +56,6 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
         registerForContextMenu(headerNavBar);
     }
 
-    public void displayToast(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Shows a message that the donut image was clicked.
-     */
-    public void showDonutOrder(View view) {
-        mOrderMessage = getString(R.string.donut_order_message);
-        displayToast(mOrderMessage);
-    }
-
-    /**
-     * Shows a message that the ice cream sandwich image was clicked.
-     */
-    public void showIceCreamOrder(View view) {
-        mOrderMessage = getString(R.string.ice_cream_order_message);
-        displayToast(mOrderMessage);
-    }
-
-    /**
-     * Shows a message that the froyo image was clicked.
-     */
-    public void showFroyoOrder(View view) {
-        mOrderMessage = getString(R.string.froyo_order_message);
-        displayToast(mOrderMessage);
-    }
-
     /**
      * Event handler when menu item is clicked.
      */
@@ -94,43 +63,7 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
     public void onActionClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.action_order:
-                Intent intent = new Intent(MainActivity.this, SportsActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
-                startActivity(intent);
                 break;
-            case R.id.action_status:
-                Intent dialogIntent = new Intent(MainActivity.this, DialogActivity.class);
-                startActivity(dialogIntent);
-                break;
-            case R.id.action_favorite:
-                Intent datePickerIntent = new Intent(MainActivity.this, DatePickerActivity.class);
-                startActivity(datePickerIntent);
-                break;
-        }
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_context, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.context_edit:
-                displayToast("Edit choice clicked.");
-                return true;
-            case R.id.context_share:
-                displayToast("Share choice clicked.");
-                return true;
-            case R.id.context_delete:
-                displayToast("Delete choice clicked.");
-                return true;
-            default:
-                return super.onContextItemSelected(item);
         }
     }
 }
