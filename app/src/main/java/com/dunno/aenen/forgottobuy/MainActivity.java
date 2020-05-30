@@ -2,10 +2,14 @@ package com.dunno.aenen.forgottobuy;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,6 +43,8 @@ import java.util.Random;
 
 import amazon.widget.OnActionsMenuClickListener;
 
+import static com.dunno.aenen.forgottobuy.ForgotToBuyContract.*;
+
 
 public class MainActivity extends Activity implements OnActionsMenuClickListener {
 
@@ -54,6 +61,43 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
         headerNavBar.setOnHeaderActionsClickListener(this);
 
         registerForContextMenu(headerNavBar);
+
+        //db testing
+        ForgotToBuyDbHelper dbHelper = new ForgotToBuyDbHelper(getApplicationContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        //insert
+        ContentValues values = new ContentValues();
+        values.put(Product.COLUMN_NAME_DESCRIPTION, "My first sqlite insert♥♥♥");
+        long newRowId = db.insert(Product.TABLE_NAME, null, values);
+
+        //select
+        String[] projection = {
+                BaseColumns._ID,
+                Product.COLUMN_NAME_DESCRIPTION,
+                Product.COLUMN_NAME_POPULARITY
+        };
+        String selection = Product.COLUMN_NAME_DESCRIPTION + " = ?";
+        String[] selectionArgs = {"My first sqlite insert♥♥♥"};
+        String sortOrder = Product.COLUMN_NAME_DESCRIPTION + " DESC";
+        Cursor cursor = db.query(
+                Product.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+        List itemIds = new ArrayList();
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(Product._ID));
+            String desc = cursor.getString(
+                    cursor.getColumnIndexOrThrow(Product.COLUMN_NAME_DESCRIPTION));
+            itemIds.add(itemId);
+        }
+        cursor.close();
     }
 
     /**
