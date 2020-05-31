@@ -43,10 +43,9 @@ import java.util.Random;
 
 import amazon.widget.OnActionsMenuClickListener;
 
-import static com.dunno.aenen.forgottobuy.ForgotToBuyContract.*;
-
-
 public class MainActivity extends Activity implements OnActionsMenuClickListener {
+
+    ForgotToBuyDbHelper dbHelper = new ForgotToBuyDbHelper(getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,25 +62,24 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
         registerForContextMenu(headerNavBar);
 
         //db testing
-        ForgotToBuyDbHelper dbHelper = new ForgotToBuyDbHelper(getApplicationContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         //insert
         ContentValues values = new ContentValues();
-        values.put(Product.COLUMN_NAME_DESCRIPTION, "My first sqlite insert♥♥♥");
-        long newRowId = db.insert(Product.TABLE_NAME, null, values);
+        values.put(ForgotToBuyContract.Product.COLUMN_NAME_NAME, "My first sqlite insert♥♥");
+        long newRowId = db.insert(ForgotToBuyContract.Product.TABLE_NAME, null, values);
 
         //select
         String[] projection = {
-                BaseColumns._ID,
-                Product.COLUMN_NAME_DESCRIPTION,
-                Product.COLUMN_NAME_POPULARITY
+                ForgotToBuyContract.Product._ID,
+                ForgotToBuyContract.Product.COLUMN_NAME_NAME,
+                ForgotToBuyContract.Product.COLUMN_NAME_POPULARITY
         };
-        String selection = Product.COLUMN_NAME_DESCRIPTION + " = ?";
-        String[] selectionArgs = {"My first sqlite insert♥♥♥"};
-        String sortOrder = Product.COLUMN_NAME_DESCRIPTION + " DESC";
+        String selection = ForgotToBuyContract.Product.COLUMN_NAME_NAME + " = ?";
+        String[] selectionArgs = {"My first sqlite insert♥♥"};
+        String sortOrder = ForgotToBuyContract.Product.COLUMN_NAME_NAME + " DESC";
         Cursor cursor = db.query(
-                Product.TABLE_NAME,
+                ForgotToBuyContract.Product.TABLE_NAME,
                 projection,
                 selection,
                 selectionArgs,
@@ -92,9 +90,9 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
         List itemIds = new ArrayList();
         while(cursor.moveToNext()) {
             long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(Product._ID));
+                    cursor.getColumnIndexOrThrow(ForgotToBuyContract.Product._ID));
             String desc = cursor.getString(
-                    cursor.getColumnIndexOrThrow(Product.COLUMN_NAME_DESCRIPTION));
+                    cursor.getColumnIndexOrThrow(ForgotToBuyContract.Product.COLUMN_NAME_NAME));
             itemIds.add(itemId);
         }
         cursor.close();
@@ -109,5 +107,11 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
             case R.id.action_order:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
     }
 }

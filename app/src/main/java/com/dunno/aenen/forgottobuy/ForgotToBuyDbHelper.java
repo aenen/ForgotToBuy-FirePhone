@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "forgotToBuy.db";
 
     public ForgotToBuyDbHelper(Context context) {
@@ -20,10 +20,14 @@ public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ForgotToBuyContract.Product.SQL_CREATE_TABLE);
+        db.execSQL(ForgotToBuyContract.List.SQL_CREATE_TABLE);
+        db.execSQL(ForgotToBuyContract.ListItem.SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(ForgotToBuyContract.ListItem.SQL_DELETE_TABLE);
+        db.execSQL(ForgotToBuyContract.List.SQL_DELETE_TABLE);
         db.execSQL(ForgotToBuyContract.Product.SQL_DELETE_TABLE);
         onCreate(db);
     }
