@@ -34,20 +34,18 @@
             android:layout_height="match_parent"
             euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
 
-            <com.amazon.euclid.widget.ZContainer
+            <LinearLayout
+                android:id="@+id/list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingRight="24dp"
-                euclid:layout_depth="wrap_content">
-
-                <com.amazon.euclid.widget.ZLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    euclid:layout_depth="wrap_content">
-
-                </com.amazon.euclid.widget.ZLinearLayout>
-            </com.amazon.euclid.widget.ZContainer>
+                euclid:layout_depth="wrap_content" />
+            </LinearLayout>
         </com.amazon.euclid.widget.ZShadowReceiver>
     </LinearLayout>
 </com.amazon.euclid.widget.ZParallaxBackground>

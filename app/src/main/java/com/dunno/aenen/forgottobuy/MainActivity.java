@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazon.euclid.util.TiltScrollController;
+import com.amazon.euclid.util.TiltScrollable;
+import com.amazon.euclid.util.triggers.TouchEventTrigger;
 import com.amazon.euclid.widget.ZContainer;
 import com.amazon.euclid.widget.ZHeaderNavigationBar;
 import com.amazon.euclid.widget.ZLinearLayout;
@@ -45,7 +48,10 @@ import amazon.widget.OnActionsMenuClickListener;
 
 public class MainActivity extends Activity implements OnActionsMenuClickListener {
 
-    ForgotToBuyDbHelper dbHelper = new ForgotToBuyDbHelper(getApplicationContext());
+    private ForgotToBuyDbHelper mDbHelper;
+    private RecyclerView mRecyclerView;
+    private ListAdapter mAdapter;
+    private TiltScrollController mTiltScrollController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,41 +67,34 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
 
         registerForContextMenu(headerNavBar);
 
+        mDbHelper = new ForgotToBuyDbHelper(getApplicationContext());
+
         //db testing
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        mDbHelper.insertTestData();
+//        mDbHelper.insertTestData();
+//        mDbHelper.insertTestData();
+        List<ListDTO> lists = mDbHelper.getLists();
 
-        //insert
-        ContentValues values = new ContentValues();
-        values.put(ForgotToBuyContract.Product.COLUMN_NAME_NAME, "My first sqlite insert♥♥");
-        long newRowId = db.insert(ForgotToBuyContract.Product.TABLE_NAME, null, values);
+        // Get a handle to the RecyclerView.
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        // Create an adapter and supply the data to be displayed.
+        mAdapter = new ListAdapter(this, lists);
+        // Connect the adapter with the RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
+        // Give the RecyclerView a default layout manager.
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //select
-        String[] projection = {
-                ForgotToBuyContract.Product._ID,
-                ForgotToBuyContract.Product.COLUMN_NAME_NAME,
-                ForgotToBuyContract.Product.COLUMN_NAME_POPULARITY
-        };
-        String selection = ForgotToBuyContract.Product.COLUMN_NAME_NAME + " = ?";
-        String[] selectionArgs = {"My first sqlite insert♥♥"};
-        String sortOrder = ForgotToBuyContract.Product.COLUMN_NAME_NAME + " DESC";
-        Cursor cursor = db.query(
-                ForgotToBuyContract.Product.TABLE_NAME,
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                sortOrder
-        );
-        List itemIds = new ArrayList();
-        while(cursor.moveToNext()) {
-            long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(ForgotToBuyContract.Product._ID));
-            String desc = cursor.getString(
-                    cursor.getColumnIndexOrThrow(ForgotToBuyContract.Product.COLUMN_NAME_NAME));
-            itemIds.add(itemId);
-        }
-        cursor.close();
+
+        // Create an instance of TiltScrollController.
+        mTiltScrollController = new TiltScrollController(this);
+
+        // Attach the ViewGroup and ListView to the TiltScrollController.
+        ViewGroup containerView = (ViewGroup) findViewById(R.id.list_container);
+        mTiltScrollController.attach(containerView, new RecyclerViewTiltScrollable(), mRecyclerView);
+
+        // Add a TouchEventTrigger to the TiltScrollController.
+        // This trigger disables tilt scrolling when the view is in a touch event.
+        mTiltScrollController.addScrollStateTrigger(new TouchEventTrigger(mRecyclerView));
     }
 
     /**
@@ -109,9 +108,29 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
         }
     }
 
+    /**
+     * Called every time the activity is launched.
+     * Registers for tilt event listeners.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTiltScrollController.registerEventObservers();
+    }
+
+    /**
+     * Called upon application pause or shutdown.
+     * Release the TiltScrollController's event listeners.
+     */
+    @Override
+    public void onPause() {
+        mTiltScrollController.unregisterEventObservers();
+        super.onPause();
+    }
+
     @Override
     protected void onDestroy() {
-        dbHelper.close();
+        mDbHelper.close();
         super.onDestroy();
     }
 }

@@ -41,7 +41,7 @@ public final class ForgotToBuyContract {
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         _ID + " INTEGER PRIMARY KEY," +
                         COLUMN_NAME_TITLE + " TEXT NULL," +
-                        COLUMN_NAME_CREATION_DATE + " DATE DEFAULT (datetime('now','localtime')))";
+                        COLUMN_NAME_CREATION_DATE + " DATETIME DEFAULT (strftime('%s','now')))";
 
         public static final String SQL_DELETE_TABLE =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -52,6 +52,7 @@ public final class ForgotToBuyContract {
         public static final String TABLE_NAME = "listItems_tb";
         public static final String COLUMN_NAME_LIST_ID = List._ID;
         public static final String COLUMN_NAME_NAME = "name";
+        public static final String COLUMN_NAME_SEQUENCE = "sequence";
         public static final String COLUMN_NAME_IS_CHECKED = "isChecked";
 
         public static final String SQL_CREATE_TABLE =
@@ -59,6 +60,7 @@ public final class ForgotToBuyContract {
                         _ID + " INTEGER PRIMARY KEY," +
                         COLUMN_NAME_LIST_ID + " TEXT NOT NULL," +
                         COLUMN_NAME_NAME + " TEXT NOT NULL," +
+                        COLUMN_NAME_SEQUENCE + " INTEGER NOT NULL," +
                         COLUMN_NAME_IS_CHECKED + " INTEGER DEFAULT 0," +
                         "FOREIGN KEY (" + COLUMN_NAME_LIST_ID + ")" +
                         "REFERENCES " + List.TABLE_NAME + " (" + List._ID + ")" +
