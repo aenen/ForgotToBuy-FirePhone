@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Forgot to Buy</string>
-    <string name="title_activity_main">Забув купити</string>
+    <string name="title_activity_main">Forgot to Buy</string>
     <string name="zheadernvabar_subtitle">Яблука</string>
-    <string name="zheadernavbar_action_1_title">Order</string>
+    <string name="zheadernavbar_action_add_checklist">Order</string>
 </resources>

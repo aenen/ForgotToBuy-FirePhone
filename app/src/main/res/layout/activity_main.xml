@@ -20,7 +20,7 @@
                 android:id="@+id/zheadernavigationbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                amazon:actionsMenu="@menu/menu_zheadernavigationbar"
+                amazon:actionsMenu="@menu/menu_main"
                 amazon:headerSubtitle="@string/zheadernvabar_subtitle"
                 amazon:headerTitle="@string/title_activity_main"
                 amazon:headerSecondaryText=""

@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_order"
-        android:title="@string/zheadernavbar_action_1_title"
-        android:icon="@string/zheadernavbar_action_order"
+        android:id="@+id/action_add_checklist"
+        android:title="@string/zheadernavbar_action_add_checklist"
+        android:icon="@string/zheadernavbar_action_new"
         android:showAsAction="never"
         android:orderInCategory="30"/>
 </menu>

@@ -11,7 +11,7 @@
         android:padding="20dp">
 
         <com.amazon.euclid.widget.ZTextView
-            android:id="@+id/list_title"
+            android:id="@+id/checklist_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"

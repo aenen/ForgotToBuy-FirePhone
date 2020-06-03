@@ -5,9 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import com.amazon.euclid.util.TiltScrollDirection;
 import com.amazon.euclid.util.TiltScrollable;
 
-/**
- * Created by Yaroslav on 03.06.2020.
- */
 public class RecyclerViewTiltScrollable implements TiltScrollable<RecyclerView> {
 
     RecyclerView mRecyclerView;
@@ -45,7 +42,7 @@ int prr=1+1;
     public boolean hasContentToScroll()
     {
         int prr=1+1;
-        return false;
+        return true;
     }
 
     @Override
