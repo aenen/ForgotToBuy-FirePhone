@@ -1,6 +1,7 @@
 package com.dunno.aenen.forgottobuy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,12 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.Chec
 
     private final List<ChecklistDTO> mChecklists;
     private LayoutInflater mInflater;
+    private Context mContext;
 
     public ChecklistAdapter(Context context, List<ChecklistDTO> checklist) {
         mInflater = LayoutInflater.from(context);
-        this.mChecklists = checklist;
+        mChecklists = checklist;
+        mContext = context;
     }
 
     @Override
@@ -57,9 +60,10 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.Chec
         public void onClick(View view) {
             int mPosition = getLayoutPosition();
             ChecklistDTO element = mChecklists.get(mPosition);
-            element.Title = "Clicked! " + element.Title;
-            mChecklists.set(mPosition, element);
-            mAdapter.notifyDataSetChanged();
+
+            Intent intent = new Intent(mContext, ChecklistDetailActivity.class);
+            intent.putExtra(MainActivity.EXTRA_IDCHECKLIST, element.IdList);
+            mContext.startActivity(intent);
         }
     }
 }

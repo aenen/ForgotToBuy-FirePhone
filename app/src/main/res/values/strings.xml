@@ -3,4 +3,8 @@
     <string name="title_activity_main">Forgot to Buy</string>
     <string name="zheadernvabar_subtitle">Яблука</string>
     <string name="zheadernavbar_action_add_checklist">Order</string>
+    <string name="title_activity_checklist_detail">ChecklistDetailActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

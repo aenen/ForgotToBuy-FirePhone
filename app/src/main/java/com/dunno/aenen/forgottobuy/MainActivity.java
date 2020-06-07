@@ -17,6 +17,7 @@ import amazon.widget.OnActionsMenuClickListener;
 
 public class MainActivity extends Activity implements OnActionsMenuClickListener {
 
+    public static final String EXTRA_IDCHECKLIST = "com.dunno.aenen.forgottobuy.extra.IDCHECKLIST";
     private ForgotToBuyDbHelper mDbHelper;
     private RecyclerView mRecyclerView;
     private ChecklistAdapter mAdapter;
@@ -33,8 +34,6 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
 
         final ZHeaderNavigationBar headerNavBar = (ZHeaderNavigationBar) findViewById(R.id.zheadernavigationbar);
         headerNavBar.setOnHeaderActionsClickListener(this);
-
-        registerForContextMenu(headerNavBar);
 
         mDbHelper = new ForgotToBuyDbHelper(getApplicationContext());
 

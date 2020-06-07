@@ -10,6 +10,7 @@ public class ChecklistDTO {
     public String Title;
     public Date CreationDate;
 
+    public ChecklistDTO(){}
     public ChecklistDTO(long idList, String title, Date creationDate) {
         IdList = idList;
         Title = title;

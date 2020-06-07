@@ -43,6 +43,34 @@ public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
+    public ChecklistDTO getChecklist(long idChecklist) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String[] projection = {
+                ForgotToBuyContract.Checklist._ID,
+                ForgotToBuyContract.Checklist.COLUMN_NAME_TITLE,
+                ForgotToBuyContract.Checklist.COLUMN_NAME_CREATION_DATE
+        };
+        String selection = ForgotToBuyContract.Checklist._ID + " = ?";
+        String[] selectionArgs = { Long.toString(idChecklist) };
+        Cursor cursor = db.query(ForgotToBuyContract.Checklist.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+
+        ChecklistDTO checklist = new ChecklistDTO();
+        if(cursor.moveToNext()) {
+            long idList = cursor.getLong(cursor.getColumnIndexOrThrow(ForgotToBuyContract.Checklist._ID));
+            String title= cursor.getString(cursor.getColumnIndexOrThrow(ForgotToBuyContract.Checklist.COLUMN_NAME_TITLE));
+            long longDate=cursor.getLong(cursor.getColumnIndexOrThrow(ForgotToBuyContract.Checklist.COLUMN_NAME_CREATION_DATE));
+            Date creationDate = new Date(longDate * 1000);
+
+            checklist = new ChecklistDTO(idList, title, creationDate);
+        }
+        cursor.close();
+
+        return checklist;
+
+    }
+
+
     public List<ChecklistDTO> getChecklists() {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -80,6 +108,43 @@ public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return  lists;
+    }
+
+    public List<ChecklistItemDTO> getChecklistItems(long idChecklist) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String[] projection = {
+                ForgotToBuyContract.ChecklistItem._ID,
+                ForgotToBuyContract.ChecklistItem.COLUMN_NAME_NAME,
+                ForgotToBuyContract.ChecklistItem.COLUMN_NAME_SEQUENCE,
+                ForgotToBuyContract.ChecklistItem.COLUMN_NAME_IS_CHECKED
+        };
+        String selection = ForgotToBuyContract.ChecklistItem.COLUMN_NAME_CHECKLIST_ID + " = ?";
+        String[] selectionArgs = { Long.toString(idChecklist) };
+        String sortOrder = ForgotToBuyContract.ChecklistItem.COLUMN_NAME_SEQUENCE;
+        Cursor cursor = db.query(ForgotToBuyContract.ChecklistItem.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+
+        List<ChecklistItemDTO> result = new ArrayList<ChecklistItemDTO>();
+        while(cursor.moveToNext()) {
+            long idChecklistItem = cursor.getLong(cursor.getColumnIndexOrThrow(ForgotToBuyContract.ChecklistItem._ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_NAME));
+            int sequence = cursor.getInt(cursor.getColumnIndexOrThrow(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_SEQUENCE));
+            boolean isChecked = cursor.getInt(cursor.getColumnIndexOrThrow(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_IS_CHECKED)) != 0;
+
+            result.add(new ChecklistItemDTO(idChecklistItem, name, sequence, isChecked));
+        }
+        cursor.close();
+
+        return result;
+    }
+
+    public void setChecklistItemIsChecked(long idChecklistItem, boolean isCheckedValue){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_IS_CHECKED, isCheckedValue? 1 : 0);
+        db.update(ForgotToBuyContract.ChecklistItem.TABLE_NAME, cv, ForgotToBuyContract.ChecklistItem._ID + " = ?", new String[] { String.valueOf(idChecklistItem) });
     }
 
     public void insertTestData() {
