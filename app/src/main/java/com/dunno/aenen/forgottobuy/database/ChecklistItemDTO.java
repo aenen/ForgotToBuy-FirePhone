@@ -1,4 +1,4 @@
-package com.dunno.aenen.forgottobuy;
+package com.dunno.aenen.forgottobuy.database;
 
 import java.util.Date;
 

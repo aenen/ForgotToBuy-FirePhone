@@ -39,7 +39,7 @@
             android:required="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".checklist.list.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -49,13 +49,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChecklistDetailActivity"
+            android:name=".checklist.details.ChecklistDetailActivity"
             android:label="@string/title_activity_checklist_detail"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".checklist.list.MainActivity"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dunno.aenen.forgottobuy.MainActivity" />
+                android:value=".checklist.list.MainActivity" />
         </activity>
     </application>
 

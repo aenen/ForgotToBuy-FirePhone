@@ -1,4 +1,4 @@
-package com.dunno.aenen.forgottobuy;
+package com.dunno.aenen.forgottobuy.checklist.list;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.Window;
 import com.amazon.euclid.util.TiltScrollController;
 import com.amazon.euclid.widget.ZContainer;
 import com.amazon.euclid.widget.ZHeaderNavigationBar;
+import com.dunno.aenen.forgottobuy.R;
+import com.dunno.aenen.forgottobuy.database.ChecklistDTO;
+import com.dunno.aenen.forgottobuy.database.ForgotToBuyDbHelper;
 
 import java.util.List;
 

@@ -1,15 +1,18 @@
-package com.dunno.aenen.forgottobuy;
+package com.dunno.aenen.forgottobuy.checklist.details;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.amazon.euclid.widget.ZContainer;
 import com.amazon.euclid.widget.ZHeaderNavigationBar;
+import com.dunno.aenen.forgottobuy.R;
+import com.dunno.aenen.forgottobuy.checklist.list.MainActivity;
+import com.dunno.aenen.forgottobuy.database.ChecklistDTO;
+import com.dunno.aenen.forgottobuy.database.ChecklistItemDTO;
+import com.dunno.aenen.forgottobuy.database.ForgotToBuyDbHelper;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;

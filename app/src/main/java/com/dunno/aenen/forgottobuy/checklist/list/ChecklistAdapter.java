@@ -1,4 +1,4 @@
-package com.dunno.aenen.forgottobuy;
+package com.dunno.aenen.forgottobuy.checklist.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.amazon.euclid.widget.ZTextView;
+import com.dunno.aenen.forgottobuy.checklist.details.ChecklistDetailActivity;
+import com.dunno.aenen.forgottobuy.R;
+import com.dunno.aenen.forgottobuy.database.ChecklistDTO;
 
 import java.util.List;
 

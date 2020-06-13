@@ -1,13 +1,15 @@
-package com.dunno.aenen.forgottobuy;
+package com.dunno.aenen.forgottobuy.checklist.details;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.amazon.euclid.widget.ZCheckBox;
+import com.dunno.aenen.forgottobuy.R;
+import com.dunno.aenen.forgottobuy.database.ChecklistItemDTO;
+import com.dunno.aenen.forgottobuy.database.ForgotToBuyDbHelper;
 
 import java.util.List;
 
