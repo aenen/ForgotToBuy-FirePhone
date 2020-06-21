@@ -1,0 +1,49 @@
+<com.amazon.euclid.widget.ZParallaxBackground
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    xmlns:amazon="http://schemas.android.com/apk/res/amazon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.amazon.euclid.widget.ZContainer
+            android:id="@+id/checklist_insertion_navigation_bar_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            euclid:autoPadding="true">
+
+            <com.amazon.euclid.widget.ZHeaderNavigationBar
+                android:id="@+id/checklist_insertion_navigation_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                amazon:actionsMenu="@menu/menu_checklist_insertion"
+                amazon:headerSubtitle="@string/checklist_insertion_navigation_bar_subtitle"
+                amazon:headerTitle="@string/checklist_insertion_navigation_bar_title"
+                euclid:layout_depth="wrap_content"
+                euclid:widgetTheme="@euclid:style/Theme.Euclid.Dark" />
+        </com.amazon.euclid.widget.ZContainer>
+
+        <com.amazon.euclid.widget.ZShadowReceiver
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
+
+            <LinearLayout
+                android:id="@+id/checklist_insertion_items_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </com.amazon.euclid.widget.ZShadowReceiver>
+    </LinearLayout>
+</com.amazon.euclid.widget.ZParallaxBackground>

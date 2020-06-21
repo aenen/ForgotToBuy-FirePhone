@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_checklist_insertion">
+
+    <item
+        android:id="@+id/action_checklist_insertion_save"
+        android:title="@string/action_checklist_insertion_save_text"
+        android:icon="@string/amazon_icon_accept" />
+</menu>
