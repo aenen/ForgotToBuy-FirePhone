@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/menu"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:id="@+id/menu">
 
     <item
         android:id="@+id/action_add_checklist"
         android:title="@string/zheadernavbar_action_add_checklist"
-        android:icon="@string/zheadernavbar_action_new"
-        android:showAsAction="never"
-        android:orderInCategory="30"/>
+        android:icon="@string/zheadernavbar_action_new"/>
 </menu>

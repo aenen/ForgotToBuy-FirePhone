@@ -1,6 +1,7 @@
 package com.dunno.aenen.forgottobuy.checklist.list;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.amazon.euclid.util.TiltScrollController;
 import com.amazon.euclid.widget.ZContainer;
 import com.amazon.euclid.widget.ZHeaderNavigationBar;
 import com.dunno.aenen.forgottobuy.R;
+import com.dunno.aenen.forgottobuy.checklist.insertion.ChecklistInsertionActivity;
 import com.dunno.aenen.forgottobuy.database.ChecklistDTO;
 import com.dunno.aenen.forgottobuy.database.ForgotToBuyDbHelper;
 
@@ -60,6 +62,7 @@ public class MainActivity extends Activity implements OnActionsMenuClickListener
     public void onActionClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.action_add_checklist:
+                this.startActivity(new Intent(this, ChecklistInsertionActivity.class));
                 break;
         }
     }

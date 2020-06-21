@@ -57,6 +57,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".checklist.list.MainActivity" />
         </activity>
+        <activity
+            android:name=".checklist.insertion.ChecklistInsertionActivity"
+            android:label="@string/title_activity_checklist_insertion" >
+        </activity>
     </application>
 
 </manifest>

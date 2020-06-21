@@ -1,4 +1,5 @@
-<com.amazon.euclid.widget.ZParallaxBackground xmlns:android="http://schemas.android.com/apk/res/android"
+<com.amazon.euclid.widget.ZParallaxBackground
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:euclid="http://schemas.android.com/apk/res/euclid"
     android:id="@+id/background"
     android:layout_width="match_parent"

@@ -2,9 +2,13 @@
     <string name="app_name">Forgot to Buy</string>
     <string name="title_activity_main">Forgot to Buy</string>
     <string name="zheadernvabar_subtitle">Яблука</string>
-    <string name="zheadernavbar_action_add_checklist">Order</string>
+    <string name="zheadernavbar_action_add_checklist">Add</string>
     <string name="title_activity_checklist_detail">ChecklistDetailActivity</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_checklist_insertion">New Checklist</string>
+    <string name="checklist_insertion_navigation_bar_title">New</string>
+    <string name="checklist_insertion_navigation_bar_subtitle">You can create new checklist here</string>
+    <string name="action_checklist_insertion_save_text">Save</string>
 </resources>

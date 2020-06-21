@@ -5,4 +5,5 @@
     <string name="zheadernavbar_action_new">:glyphs:glyph_new</string>
     <string name="zheadernavbar_action_favorite">:glyphs:glyph_star</string>
     <string name="zheadernavbar_action_status">:glyphs:glyph_show_more</string>
+    <string name="amazon_icon_accept">:glyphs:glyph_accept</string>
 </resources>
