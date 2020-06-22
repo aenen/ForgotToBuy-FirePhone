@@ -1,7 +1,6 @@
-<com.amazon.euclid.widget.ZParallaxBackground
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+<com.amazon.euclid.widget.ZParallaxBackground xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:amazon="http://schemas.android.com/apk/res/amazon"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -14,8 +13,7 @@
         <com.amazon.euclid.widget.ZContainer
             android:id="@+id/checklist_insertion_navigation_bar_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            euclid:autoPadding="true">
+            android:layout_height="match_parent">
 
             <com.amazon.euclid.widget.ZHeaderNavigationBar
                 android:id="@+id/checklist_insertion_navigation_bar"
@@ -39,9 +37,72 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <com.amazon.euclid.widget.ZContainer
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/padding_regular"
+                    android:paddingTop="5dp">
+
+                    <com.amazon.euclid.widget.ZTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Title:"
+                        euclid:layout_depth="wrap_content" />
+
+                </com.amazon.euclid.widget.ZContainer>
+
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="You can leave it empty ☻"
+                    android:inputType="textCapSentences" />
+
+                <com.amazon.euclid.widget.ZContainer
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/padding_regular"
+                    android:paddingTop="5dp">
+
+                    <com.amazon.euclid.widget.ZTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product:"
+                        euclid:layout_depth="wrap_content" />
+
+                </com.amazon.euclid.widget.ZContainer>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/checklist_insertion_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Cucumber"
+                        android:inputType="textCapSentences|textVisiblePassword"
+                        android:imeActionLabel="Add"/>
+
+                    <com.amazon.euclid.widget.ZContainer
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="5dp"
+                        euclid:baseDepth="@euclid:dimen/globalLayerOut2">
+
+                        <com.amazon.euclid.widget.ZImageButton
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:enabled="true"
+                            euclid:layout_depth="match_parent"
+                            euclid:scene="@euclid:string/glyph_new"
+                            euclid:textDepth="0dp"
+                            euclid:vbl="glyphs"
+                            android:onClick="onProductInsertionClick"/>
+
+                    </com.amazon.euclid.widget.ZContainer>
+
+                </LinearLayout>
 
             </LinearLayout>
         </com.amazon.euclid.widget.ZShadowReceiver>
