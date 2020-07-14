@@ -1,0 +1,17 @@
+<com.amazon.euclid.widget.ZContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:euclid="http://schemas.android.com/apk/res/euclid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    euclid:layout_depth="wrap_content"
+    android:padding="10dp">
+
+    <com.amazon.euclid.widget.ZTextView
+        android:id="@+id/checklist_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textIsSelectable="false"
+        euclid:layout_depth="wrap_content" />
+</com.amazon.euclid.widget.ZContainer>

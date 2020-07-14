@@ -104,6 +104,17 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/checklist_insertion_items_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        euclid:layout_depth="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </com.amazon.euclid.widget.ZShadowReceiver>
     </LinearLayout>
