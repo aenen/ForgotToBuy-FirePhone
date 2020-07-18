@@ -52,6 +52,7 @@
                 </com.amazon.euclid.widget.ZContainer>
 
                 <EditText
+                    android:id="@+id/checklist_insertion_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="You can leave it empty ☻"

@@ -1,6 +1,8 @@
 package com.dunno.aenen.forgottobuy.checklist.details;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +43,10 @@ public class ChecklistItemAdapter  extends RecyclerView.Adapter<ChecklistItemAda
         ChecklistItemDTO mCurrent = mChecklists.get(position);
 
         holder.mChecklistItemView.setText(mCurrent == null || mCurrent.Name.isEmpty() ? "nonono" : mCurrent.Name);
-        holder.mChecklistItemView.setChecked(mCurrent.IsChecked);
+        if(mCurrent.IsChecked) {
+            holder.mChecklistItemView.setChecked(mCurrent.IsChecked);
+            holder.mChecklistItemView.setTextColor(Color.GRAY);
+        }
     }
 
     @Override
@@ -66,6 +71,10 @@ public class ChecklistItemAdapter  extends RecyclerView.Adapter<ChecklistItemAda
             int mPosition = getLayoutPosition();
             ChecklistItemDTO element = mChecklists.get(mPosition);
             mDbHelper.setChecklistItemIsChecked(element.IdChecklistItem, ((ZCheckBox) view).isChecked());
+            if (((ZCheckBox) view).isChecked())
+                mChecklistItemView.setTextColor(Color.GRAY);
+            else
+                mChecklistItemView.setTextColor(Color.BLACK);
         }
     }
 }

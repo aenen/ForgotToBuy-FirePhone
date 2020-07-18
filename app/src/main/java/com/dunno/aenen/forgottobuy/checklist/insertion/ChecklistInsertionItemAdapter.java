@@ -39,7 +39,7 @@ public class ChecklistInsertionItemAdapter extends RecyclerView.Adapter<Checklis
 
     @Override
     public void onBindViewHolder(ChecklistInsertionItemAdapter.ChecklistInsertionItemViewHolder holder, int position) {
-        holder.mChecklistView.setText(position + 1 + ". " + mChecklistItemNames.get(position));
+        holder.mChecklistView.setText(mChecklistItemNames.get(position));
     }
 
     @Override
