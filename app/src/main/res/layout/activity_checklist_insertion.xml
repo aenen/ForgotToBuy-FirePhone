@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="Cucumber"
-                        android:inputType="textCapSentences|textVisiblePassword"
+                        android:inputType="textCapSentences"
                         android:imeActionLabel="Add"/>
 
                     <com.amazon.euclid.widget.ZContainer

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 11;
+    public static final int DATABASE_VERSION = 12;
     public static final String DATABASE_NAME = "forgotToBuy.db";
 
     public ForgotToBuyDbHelper(Context context) {
@@ -140,7 +140,8 @@ public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
 
     public void deleteChecklist(long idChecklist){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(ForgotToBuyContract.Checklist.TABLE_NAME, ForgotToBuyContract.Checklist._ID + " = ?", new String[] { String.valueOf(idChecklist) });
+        db.delete(ForgotToBuyContract.ChecklistItem.TABLE_NAME, ForgotToBuyContract.ChecklistItem.COLUMN_NAME_CHECKLIST_ID + " = ?", new String[]{String.valueOf(idChecklist)});
+        db.delete(ForgotToBuyContract.Checklist.TABLE_NAME, ForgotToBuyContract.Checklist._ID + " = ?", new String[]{String.valueOf(idChecklist)});
     }
 
     public void setChecklistItemIsChecked(long idChecklistItem, boolean isCheckedValue){
@@ -163,39 +164,37 @@ public class ForgotToBuyDbHelper extends SQLiteOpenHelper {
         long checklistId = db.insert(ForgotToBuyContract.Checklist.TABLE_NAME, null, checklistValues);
 
         for (int i = 0; i < mChecklistItemNames.size(); i++) {
+            // inserting checklist
             ContentValues checklistItemValues = new ContentValues();
             checklistItemValues.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_CHECKLIST_ID, checklistId);
             checklistItemValues.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_SEQUENCE, i + 1);
             checklistItemValues.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_NAME, mChecklistItemNames.get(i));
             db.insert(ForgotToBuyContract.ChecklistItem.TABLE_NAME, null, checklistItemValues);
-        }
-    }
 
-    public void insertTestData() {
-        SQLiteDatabase db = this.getWritableDatabase();
+            // inserting product
+            String[] projection = {
+                    ForgotToBuyContract.Product._ID,
+                    ForgotToBuyContract.Product.COLUMN_NAME_NAME,
+                    ForgotToBuyContract.Product.COLUMN_NAME_POPULARITY
+            };
+            String selection = ForgotToBuyContract.Product.COLUMN_NAME_NAME + " = ?";
+            String[] selectionArgs = { mChecklistItemNames.get(i).toLowerCase() };
+            Cursor cursor = db.query(ForgotToBuyContract.Product.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
 
-        ContentValues list1values = new ContentValues();
-        list1values.put(ForgotToBuyContract.Checklist.COLUMN_NAME_TITLE, "Сходи за продуктами");
-        long list1Id = db.insert(ForgotToBuyContract.Checklist.TABLE_NAME, null, list1values);
+            if(cursor.getCount() > 0){
+                cursor.moveToNext();
+                long idProduct = cursor.getLong(cursor.getColumnIndexOrThrow(ForgotToBuyContract.Product._ID));
+                long popularity = cursor.getLong(cursor.getColumnIndexOrThrow(ForgotToBuyContract.Product.COLUMN_NAME_POPULARITY));
 
-        ContentValues list2values = new ContentValues();
-        list2values.putNull(ForgotToBuyContract.Checklist.COLUMN_NAME_TITLE);
-        long list2Id = db.insert(ForgotToBuyContract.Checklist.TABLE_NAME, null, list2values);
-
-        for (int i = 1; i < 4; i++) {
-            ContentValues listItem1values = new ContentValues();
-            listItem1values.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_CHECKLIST_ID, list1Id);
-            listItem1values.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_SEQUENCE, i);
-            listItem1values.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_NAME, "List item " + i);
-            db.insert(ForgotToBuyContract.ChecklistItem.TABLE_NAME, null, listItem1values);
-        }
-
-        for (int i = 1; i < 10; i++) {
-            ContentValues listItem2values = new ContentValues();
-            listItem2values.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_CHECKLIST_ID, list2Id);
-            listItem2values.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_SEQUENCE, i);
-            listItem2values.put(ForgotToBuyContract.ChecklistItem.COLUMN_NAME_NAME, "List item " + i);
-            db.insert(ForgotToBuyContract.ChecklistItem.TABLE_NAME, null, listItem2values);
+                ContentValues productValues = new ContentValues();
+                productValues.put(ForgotToBuyContract.Product.COLUMN_NAME_POPULARITY, popularity + 1);
+                db.update(ForgotToBuyContract.Product.TABLE_NAME, productValues, ForgotToBuyContract.Product._ID + " = ?", new String[] { String.valueOf(idProduct) });
+            }
+            else {
+                ContentValues productValues = new ContentValues();
+                productValues.put(ForgotToBuyContract.Product.COLUMN_NAME_NAME, mChecklistItemNames.get(i).toLowerCase());
+                db.insert(ForgotToBuyContract.Product.TABLE_NAME, null, productValues);
+            }
         }
     }
 }
