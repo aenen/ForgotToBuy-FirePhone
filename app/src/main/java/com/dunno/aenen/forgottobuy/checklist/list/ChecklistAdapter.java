@@ -12,6 +12,8 @@ import com.dunno.aenen.forgottobuy.checklist.details.ChecklistDetailActivity;
 import com.dunno.aenen.forgottobuy.R;
 import com.dunno.aenen.forgottobuy.database.ChecklistDTO;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -37,8 +39,11 @@ public class ChecklistAdapter extends RecyclerView.Adapter<ChecklistAdapter.Chec
 
     @Override
     public void onBindViewHolder(ChecklistAdapter.ChecklistViewHolder holder, int position) {
-        String mCurrent = mChecklists.get(position).Title;
-        holder.mChecklistView.setText(mCurrent == null || mCurrent.isEmpty()?"nonono":mCurrent);
+        ChecklistDTO mCurrent = mChecklists.get(position);
+
+        holder.mChecklistView.setText(mCurrent.Title == null || mCurrent.Title.isEmpty()
+                ? mCurrent.CreationDate.toLocaleString()
+                : mCurrent.Title);
     }
 
     @Override

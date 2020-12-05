@@ -114,6 +114,7 @@
                         android:id="@+id/checklist_insertion_items_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scrollbars="vertical"
                         euclid:layout_depth="wrap_content" />
                 </LinearLayout>
             </LinearLayout>

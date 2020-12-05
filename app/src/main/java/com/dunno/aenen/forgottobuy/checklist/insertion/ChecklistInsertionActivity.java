@@ -65,13 +65,7 @@ public class ChecklistInsertionActivity extends Activity implements OnActionsMen
         product.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                Toast.makeText(ChecklistInsertionActivity.this, v.getText(), Toast.LENGTH_SHORT).show();
-
-                mChecklistItemNames.add(0, v.getText().toString());
-                mRecyclerView.getAdapter().notifyItemInserted(0);
-
-                v.setText(null);
+                addProduct();
                 return true;
             }
         });
@@ -151,11 +145,19 @@ public class ChecklistInsertionActivity extends Activity implements OnActionsMen
     }
 
     public void onProductInsertionClick(View view) {
+        addProduct();
+    }
 
+    private void addProduct() {
         EditText product = (EditText) findViewById(R.id.checklist_insertion_product);
-        int mChecklistItemNamesSize = mChecklistItemNames.size();
-        mChecklistItemNames.add(0, product.getText().toString());
+        String productName = product.getText().toString();
+
+        if (productName.isEmpty())
+            return;
+
+        mChecklistItemNames.add(0, productName);
         mRecyclerView.getAdapter().notifyItemInserted(0);
+        mRecyclerView.scrollToPosition(0);
 
         product.setText(null);
     }

@@ -20,7 +20,6 @@
                 android:id="@+id/zheadernavigationbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                amazon:actionsMenu="@menu/menu_main"
                 amazon:headerSubtitle="@string/zheadernvabar_subtitle"
                 amazon:headerTitle="@string/title_activity_main"
                 amazon:headerSecondaryText=""
@@ -35,7 +34,6 @@
             euclid:shadowDepth="@euclid:dimen/globalLayerScreen">
 
             <LinearLayout
-                android:id="@+id/checklist_detail_items_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -44,6 +42,7 @@
                     android:id="@+id/checklist_detail_items_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:scrollbars="vertical"
                     euclid:layout_depth="wrap_content" />
 
             </LinearLayout>
